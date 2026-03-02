@@ -63,7 +63,7 @@ const Login = () => {
                     <div className="form-group">
                         <label htmlFor="email">Email Address</label>
                         <div className="input-wrapper">
-                            <i className="fas fa-envelope"></i>
+                            <i className="fas fa-envelope"></i>git status
                             <input
                                 type="email"
                                 id="email"

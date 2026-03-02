@@ -141,7 +141,6 @@ const Register = () => {
                         </div>
                     </div>
 
-                  // In your form, ensure username field is present:
                     <div className="form-group">
                         <label>Username</label>
                         <input
