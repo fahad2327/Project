@@ -40,19 +40,27 @@ const JobDetails = () => {
         e.preventDefault();
         setApplying(true);
         try {
-            const response = await freelancerService.applyForJob(jobId, application);
+            // Prepare application data - handle empty values
+            const applicationData = {
+                cover_letter: application.cover_letter,
+                proposed_rate: application.proposed_rate || null,
+                availability_date: application.availability_date || null
+            };
+
+            console.log('Submitting application:', applicationData);
+
+            const response = await freelancerService.applyForJob(jobId, applicationData);
             if (response.success) {
-                toast.success('Application submitted successfully!');
+                toast.success('Application submitted successfully! Check your email for confirmation.');
                 navigate('/my-applications');
             }
         } catch (error) {
             console.error('Failed to apply:', error);
-            toast.error('Failed to submit application');
+            toast.error(error.response?.data?.message || 'Failed to submit application');
         } finally {
             setApplying(false);
         }
     };
-
     if (loading) return <Loader />;
     if (!job) return <div>Job not found</div>;
 
