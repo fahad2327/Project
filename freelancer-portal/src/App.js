@@ -333,7 +333,7 @@ import Loader from './components/common/Loader';
 import LandingPage from './components/home/LandingPage';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
-import VerifyEmail from './pages/VerifyEmail';
+import VerifyEmail from './components/VerifyEmail';
 import Notifications from './pages/Notifications';
 
 // Freelancer Components
@@ -344,6 +344,7 @@ import JobDetails from './components/freelancer/JobDetails';
 import MyApplications from './components/freelancer/MyApplications';
 
 // Recruiter Components
+import EditJob from './components/recruiter/EditJob';
 import RecruiterDashboard from './components/recruiter/RecruiterDashboard';
 import RecruiterProfile from './components/recruiter/RecruiterProfile';
 import PostJob from './components/recruiter/PostJob';
@@ -490,6 +491,16 @@ function AppContent() {
               </PrivateRoute>
             }
           />
+
+          <Route
+            path="/recruiter/edit-job/:jobId"
+            element={
+              <PrivateRoute allowedRoles={['recruiter']}>
+                <EditJob />
+              </PrivateRoute>
+            }
+          />
+
           <Route
             path="/recruiter/jobs"
             element={

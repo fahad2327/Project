@@ -439,7 +439,9 @@ const RecruiterDashboard = () => {
                                             <span className={`status-badge ${app.status}`}>{app.status}</span>
                                         </div>
                                     </div>
-                                    <Link to={`/jobs/${app.job_id}/applications?application=${app.id}`}
+                                    {/* <Link to={`/jobs/${app.job_id}/applications?application=${app.id}`}
+                                        className="btn btn-outline btn-small">Review</Link> */}
+                                    <Link to={`/recruiter/jobs/${app.job_id}/applications?application=${app.id}`}
                                         className="btn btn-outline btn-small">Review</Link>
                                 </div>
                             ))

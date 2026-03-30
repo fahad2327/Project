@@ -94,3 +94,99 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--dark);
 }
+
+/* src/App.css - Add these styles */
+.not-found-container {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.not-found-content {
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.not-found-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.not-found-content h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.not-found-content p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.quick-links {
+  text-align: left;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.quick-links h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-links li {
+  margin-bottom: 0.5rem;
+}
+
+.quick-links a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.quick-links a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.back-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+}

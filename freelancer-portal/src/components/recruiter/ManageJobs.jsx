@@ -106,6 +106,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import recruiterService from '../../services/recruiterService';
 import Loader from '../common/Loader';
+import toast from 'react-hot-toast';
 import './Recruiter.css';
 
 const ManageJobs = () => {
@@ -115,6 +116,22 @@ const ManageJobs = () => {
     useEffect(() => {
         fetchJobs();
     }, []);
+
+    const handleDeleteJob = async (jobId) => {
+        if (window.confirm('Are you sure you want to delete this job? This action cannot be undone.')) {
+            try {
+                const response = await recruiterService.deleteJob(jobId);
+                if (response.success) {
+                    toast.success('Job deleted successfully');
+                    fetchJobs(); // refresh the list
+                } else {
+                    toast.error(response.message || 'Failed to delete job');
+                }
+            } catch (error) {
+                toast.error('Error deleting job');
+            }
+        }
+    };
 
     const fetchJobs = async () => {
         try {
@@ -177,11 +194,26 @@ const ManageJobs = () => {
                                         </span>
                                     </td>
                                     <td>
-                                        <div className="action-buttons">
+                                        {/* <div className="action-buttons">
                                             <Link to={`/recruiter/jobs/${job.id}/applications`} className="btn btn-outline btn-small">
                                                 View Applications
                                             </Link>
                                             <button className="btn btn-outline btn-small"><i className="fas fa-edit"></i></button>
+                                        </div> */}
+                                        <div className="action-buttons">
+                                            <Link to={`/recruiter/jobs/${job.id}/applications`} className="btn btn-outline btn-small">
+                                                View Applications
+                                            </Link>
+                                            <Link to={`/recruiter/edit-job/${job.id}`} className="btn btn-outline btn-small">
+                                                <i className="fas fa-edit"></i>
+                                            </Link>
+                                            <button
+                                                onClick={() => handleDeleteJob(job.id)}
+                                                className="btn btn-outline btn-small"
+                                                style={{ color: 'var(--danger)', borderColor: 'var(--danger)' }}
+                                            >
+                                                <i className="fas fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

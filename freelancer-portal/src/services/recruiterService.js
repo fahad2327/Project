@@ -11,6 +11,11 @@ class RecruiterService {
         return response.data;
     }
 
+    async deleteJob(jobId) {
+        const response = await api.delete(`/recruiter/jobs/${jobId}`);
+        return response.data;
+    }
+
     async updateProfile(profileData) {
         const response = await api.put('/recruiter/profile', profileData);
         return response.data;
@@ -35,6 +40,16 @@ class RecruiterService {
         const response = await api.put(`/recruiter/applications/${applicationId}/status`, statusData);
         return response.data;
     }
+    async getJobDetails(jobId) {
+        const response = await api.get(`/recruiter/jobs/${jobId}`);
+        return response.data;
+    }
+
+    async updateJob(jobId, jobData) {
+        const response = await api.put(`/recruiter/jobs/${jobId}`, jobData);
+        return response.data;
+    }
+
 }
 
 export default new RecruiterService();

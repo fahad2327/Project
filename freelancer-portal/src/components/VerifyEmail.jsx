@@ -4,7 +4,6 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import emailService from '../services/emailService';
 import toast from 'react-hot-toast';
-import './VerifyEmail.css';
 
 const VerifyEmail = () => {
     const { token } = useParams();
