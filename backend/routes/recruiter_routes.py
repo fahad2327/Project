@@ -312,6 +312,22 @@ def get_all_applications():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
 
+@recruiter_bp.route('/jobs/<int:job_id>', methods=['DELETE'])
+@token_required
+@recruiter_required
+def delete_job(job_id):
+    try:
+        job = Job.get_by_id(job_id)
+        if not job or job['recruiter_id'] != request.user_id:
+            return jsonify({'success': False, 'message': 'Job not found or unauthorized'}), 404
+        success = Job.delete(job_id)
+        if success:
+            return jsonify({'success': True, 'message': 'Job deleted successfully'})
+        else:
+            return jsonify({'success': False, 'message': 'Failed to delete job'}), 500
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
 # @recruiter_bp.route('/jobs/<int:job_id>/toggle', methods=['POST'])
 # @token_required
 # @recruiter_required
